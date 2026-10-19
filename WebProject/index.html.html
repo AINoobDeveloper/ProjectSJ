@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 4 Year Anniversary 💖 | Four Years of Us</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Great Vibes, Playfair Display, Quicksand, and Lora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration for Cute Heart-Themed Palette & Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        petal: {
+                            50: '#FFF9FB',
+                            100: '#FFF0F5',
+                            200: '#FFE0EB',
+                            300: '#FFC2D6',
+                            400: '#FF94B8',
+                            500: '#FF6699',
+                        },
+                        roseberry: {
+                            500: '#E13D73',
+                            600: '#C8235A',
+                            700: '#A31645',
+                            800: '#7D1035',
+                            900: '#560A24',
+                        },
+                        warmgold: {
+                            300: '#F5E1B8',
+                            400: '#E8C582',
+                            500: '#D4A857',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        body: ['"Lora"', 'Georgia', 'serif'],
+                        sans: ['"Quicksand"', 'sans-serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Romantic Pastel Background */
+        body {
+            background: linear-gradient(180deg, #FFF9FB 0%, #FFF0F5 45%, #FFE8F0 100%);
+            color: #560A24;
+            overflow-x: hidden;
+        }
+
+        /* Background Floating Hearts Canvas */
+        #hearts-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Splash Overlay 3D Heart Seal Pulse & Float */
+        @keyframes heartBeat3D {
+            0%, 100% {
+                transform: scale(1) translateY(0px);
+                filter: drop-shadow(0 18px 28px rgba(200, 35, 90, 0.38));
+            }
+            25% {
+                transform: scale(1.09) translateY(-4px);
+                filter: drop-shadow(0 24px 36px rgba(225, 61, 115, 0.52));
+            }
+            50% {
+                transform: scale(1.03) translateY(-2px);
+            }
+            75% {
+                transform: scale(1.11) translateY(-6px);
+                filter: drop-shadow(0 26px 40px rgba(225, 61, 115, 0.58));
+            }
+        }
+
+        .heart-3d-seal {
+            animation: heartBeat3D 2.2s infinite ease-in-out;
+            transition: transform 0.3s ease;
+        }
+
+        .heart-3d-seal:hover {
+            transform: scale(1.15);
+        }
+
+        /* Gentle Floating Badge Animation */
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-slow {
+            animation: gentleFloat 3.6s ease-in-out infinite;
+        }
+
+        /* Click Burst & Celebration Floating Hearts */
+        @keyframes popAndFloatUp {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+            }
+            30% {
+                opacity: 1;
+                transform: translate(calc(-50% + var(--tx) * 0.5), calc(-50% + var(--ty) * 0.5)) scale(1.2) rotate(var(--rot));
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty) - 90px)) scale(0.7) rotate(calc(var(--rot) * 1.8));
+            }
+        }
+
+        .burst-heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            user-select: none;
+            animation: popAndFloatUp 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* =================================================================
+           GALLERY FRAME MODES: HEART-SHAPED FRAMES vs CUTE POLAROID FRAMES
+        ================================================================== */
+        .photo-card {
+            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.02) rotate(0deg) !important;
+        }
+
+        /* Mode 1: Heart-Shaped Frames (Uses SVG Clip-Path) */
+        .heart-mode .photo-frame-wrapper {
+            clip-path: url(#heart-clip-shape);
+            -webkit-clip-path: url(#heart-clip-shape);
+            aspect-ratio: 1 / 1;
+            background: #FFE0EB;
+        }
+        .heart-mode .heart-svg-outline {
+            opacity: 1;
+        }
+        .heart-mode .polaroid-pin {
+            display: none;
+        }
+        .heart-mode .photo-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            border: 2px dashed rgba(255, 148, 184, 0.7);
+            box-shadow: 0 18px 40px -12px rgba(225, 61, 115, 0.18);
+        }
+
+        /* Mode 2: Cute Polaroid Frames */
+        .polaroid-mode .photo-frame-wrapper {
+            clip-path: none;
+            -webkit-clip-path: none;
+            aspect-ratio: 4 / 4.2;
+            border-radius: 1rem;
+        }
+        .polaroid-mode .heart-svg-outline {
+            opacity: 0;
+        }
+        .polaroid-mode .polaroid-pin {
+            display: flex;
+        }
+        .polaroid-mode .photo-card {
+            background: #FFFFFF;
+            border: 2px solid #FFE0EB;
+            box-shadow: 0 20px 38px -10px rgba(163, 22, 69, 0.18);
+        }
+        .polaroid-mode .photo-card:nth-child(odd) {
+            transform: rotate(-2deg);
+        }
+        .polaroid-mode .photo-card:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        /* Cute Vintage Love Letter Stationery */
+        .love-stationery {
+            background-color: #FFFDFD;
+            background-image: 
+                radial-gradient(#FFC2D6 0.85px, transparent 0.85px),
+                linear-gradient(180deg, rgba(255, 240, 245, 0.5) 0%, rgba(255, 255, 255, 0.95) 100%);
+            background-size: 24px 24px, 100% 100%;
+            box-shadow: 
+                0 25px 60px -12px rgba(200, 35, 90, 0.18),
+                0 0 0 1px rgba(255, 148, 184, 0.45),
+                inset 0 0 50px rgba(255, 194, 214, 0.25);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF0F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF94B8;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E13D73;
+        }
+    </style>
+</head>
+<body class="font-body antialiased selection:bg-petal-300 selection:text-roseberry-900 relative">
+
+    <!-- Hidden SVG Definition for Smooth Plump Heart-Shaped Photo Clipping -->
+    <svg width="0" height="0" class="absolute pointer-events-none">
+        <defs>
+            <clipPath id="heart-clip-shape" clipPathUnits="objectBoundingBox">
+                <path d="M 0.5,0.93 C 0.5,0.93 0.04,0.65 0.04,0.33 C 0.04,0.14 0.19,0.03 0.35,0.03 C 0.44,0.03 0.5,0.10 0.5,0.16 C 0.5,0.10 0.56,0.03 0.65,0.03 C 0.81,0.03 0.96,0.14 0.96,0.33 C 0.96,0.65 0.5,0.93 0.5,0.93 Z"></path>
+            </clipPath>
+        </defs>
+    </svg>
+
+    <!-- Background Floating Pastel Hearts Canvas -->
+    <canvas id="hearts-canvas"></canvas>
+
+    <!-- =====================================================================
+         1. CUTE HEARTY OPENING ANIMATION (#splash-overlay)
+         Starts with a pastel pink splash screen and a big pulsing 3D heart seal.
+    ====================================================================== -->
+    <div id="splash-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 text-center transition-all duration-700 ease-out" style="background: radial-gradient(circle at center, #FFF5F8 0%, #FFE0EB 55%, #FFC8DC 100%);">
+        
+        <!-- Decorative Floating Background Mini Hearts in Splash -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none select-none">
+            <span class="absolute top-[12%] left-[15%] text-3xl sm:text-4xl opacity-50 float-slow">💕</span>
+            <span class="absolute top-[18%] right-[16%] text-2xl sm:text-3xl opacity-50 float-slow" style="animation-delay: 0.8s;">🌸</span>
+            <span class="absolute bottom-[18%] left-[18%] text-2xl sm:text-3xl opacity-50 float-slow" style="animation-delay: 1.4s;">💖</span>
+            <span class="absolute bottom-[15%] right-[15%] text-3xl sm:text-4xl opacity-50 float-slow" style="animation-delay: 0.4s;">✨</span>
+        </div>
+
+        <!-- Cute Top Pill -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-petal-300 shadow-sm mb-4">
+            <span class="text-sm">💌</span>
+            <span class="font-sans text-xs sm:text-sm font-bold tracking-widest uppercase text-roseberry-600">
+                A Special 4-Year Surprise For You
+            </span>
+            <span class="text-sm">💌</span>
+        </div>
+
+        <!-- Script Title -->
+        <h1 class="font-script text-5xl sm:text-7xl text-roseberry-700 mb-2 drop-shadow-sm">
+            Four Years of Loving You
+        </h1>
+        <p class="font-sans text-sm sm:text-base text-roseberry-800/80 max-w-md mx-auto mb-10 font-medium">
+            Tap our beating heart below to unlock our 4th Anniversary memories &amp; love letter 💕
+        </p>
+
+        <!-- Big Pulsing 3D-Style Heart Seal Button -->
+        <button onclick="openHeartSplash(event)" aria-label="Open Anniversary Surprise" class="heart-3d-seal relative group cursor-pointer focus:outline-none my-2">
+            <!-- Soft Outer Glow Ring -->
+            <span class="absolute -inset-6 rounded-full bg-petal-400/30 blur-2xl group-hover:bg-roseberry-500/40 transition-all"></span>
+            
+            <!-- 3D SVG Heart with Gradient & Gloss Highlight -->
+            <svg class="w-40 h-40 sm:w-48 sm:h-48 relative z-10" viewBox="0 0 200 200">
+                <defs>
+                    <radialGradient id="heart3dGrad" cx="35%" cy="28%" r="70%">
+                        <stop offset="0%" stop-color="#FF9EBB" />
+                        <stop offset="45%" stop-color="#E13D73" />
+                        <stop offset="85%" stop-color="#A31645" />
+                        <stop offset="100%" stop-color="#7D1035" />
+                    </radialGradient>
+                    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FFF0F5" />
+                        <stop offset="50%" stop-color="#FFC2D6" />
+                        <stop offset="100%" stop-color="#FF6699" />
+                    </linearGradient>
+                </defs>
+                <!-- Main Plump 3D Heart Shape -->
+                <path d="M100,178 C100,178 16,126 16,66 C16,32 43,12 72,12 C88,12 100,22 100,34 C100,22 112,12 128,12 C157,12 184,32 184,66 C184,126 100,178 100,178 Z" 
+                      fill="url(#heart3dGrad)" 
+                      stroke="url(#goldRim)" 
+                      stroke-width="4" />
+                <!-- Cute 3D Glossy Specular Highlight -->
+                <path d="M42,58 C42,38 56,26 72,26 C77,26 81,27 84,30 C70,31 53,42 48,62 C46,68 42,64 42,58 Z" 
+                      fill="rgba(255, 255, 255, 0.45)" />
+            </svg>
+
+            <!-- Center Text Inside 3D Heart -->
+            <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white pointer-events-none pb-3">
+                <span class="font-script text-3xl sm:text-4xl leading-none drop-shadow">4 Years</span>
+                <span class="font-sans text-[11px] sm:text-xs uppercase tracking-[0.22em] font-bold mt-1.5 px-3 py-0.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/40">
+                    Tap Me 💖
+                </span>
+            </div>
+        </button>
+
+        <p class="font-sans text-xs uppercase tracking-[0.2em] text-roseberry-600/80 font-semibold mt-8 animate-pulse">
+            ✨ Click anywhere on the page for heart sparkles ✨
+        </p>
+    </div>
+
+    <!-- =====================================================================
+         TOP NAVIGATION BAR (Includes 'Replay Intro 💕' Button)
+    ====================================================================== -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-petal-300/70 shadow-sm">
+        <div class="max-w-6xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
+            <!-- Brand / Monogram -->
+            <a href="#hero" class="flex items-center gap-2 group">
+                <span class="w-9 h-9 rounded-full bg-gradient-to-br from-roseberry-500 to-roseberry-700 text-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform">
+                    💖
+                </span>
+                <span class="font-script text-2xl sm:text-3xl text-roseberry-700">
+                    4 Years of Us
+                </span>
+            </a>
+
+            <!-- Navigation Links & Replay Intro Button -->
+            <nav class="flex items-center gap-2 sm:gap-5 font-sans text-xs sm:text-sm font-bold text-roseberry-700">
+                <a href="#gallery" class="hover:text-roseberry-500 transition-colors px-2 py-1">Our 4 Photos 📸</a>
+                <a href="#letter" class="hover:text-roseberry-500 transition-colors px-2 py-1 hidden sm:inline-block">Love Letter 💌</a>
+                <button onclick="replayHeartSplash(event)" class="px-3.5 py-1.5 rounded-full bg-petal-100 hover:bg-petal-200 text-roseberry-700 border border-petal-300 transition-all shadow-sm text-xs font-bold flex items-center gap-1 cursor-pointer">
+                    <span>Replay Intro 💕</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- =====================================================================
+         2. ROMANTIC HERO SECTION
+         Celebrates 'Happy 4 Year Anniversary' with heart motifs & milestone counter
+    ====================================================================== -->
+    <section id="hero" class="relative z-10 min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 pt-28 pb-16 overflow-hidden">
+        
+        <!-- Soft Heart Glow Behind Hero -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[620px] h-[340px] sm:h-[620px] bg-petal-300/40 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Cute Floating Heart Badge -->
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/90 border-2 border-petal-300 shadow-sm mb-6 float-slow">
+                <span class="text-base">💖</span>
+                <!-- ✏️ EDIT YOUR ANNIVERSARY DATE OR COUPLE NAMES HERE -->
+                <span class="font-sans text-xs sm:text-sm uppercase tracking-[0.2em] text-roseberry-600 font-bold">
+                    4 Chapters of Forever &amp; Always
+                </span>
+                <span class="text-base">💖</span>
+            </div>
+
+            <!-- Romantic Script Overline -->
+            <p class="font-script text-4xl sm:text-6xl text-roseberry-500 mb-2">
+                Happy 4 Year Anniversary
+            </p>
+
+            <!-- Main Heading -->
+            <h2 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-roseberry-900 tracking-tight leading-tight mb-6">
+                Four Years of <span class="italic font-normal text-roseberry-600">Sweet Smiles,</span><br>
+                Warm Hugs &amp; Endless Fights
+            </h2>
+
+            <!-- Heartfelt Subtitle -->
+            <p class="font-body text-base sm:text-xl text-roseberry-800/85 max-w-2xl mx-auto leading-relaxed mb-10 italic">
+                "Every love story is cute, but ours will forever be my favorite adventure. Here is to the 1,461 days we've shared and a lifetime of heartbeats still to come."
+            </p>
+
+            <!-- Hero CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#gallery" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-roseberry-500 to-roseberry-600 hover:from-roseberry-600 hover:to-roseberry-700 text-white font-sans text-sm uppercase tracking-widest font-bold shadow-lg shadow-roseberry-500/25 transition-all flex items-center justify-center gap-2">
+                    <span>See Our 4 Years in Pictures</span>
+                    <span>❤️</span>
+                </a>
+                <a href="#letter" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white hover:bg-petal-100 text-roseberry-700 border-2 border-petal-300 font-sans text-sm uppercase tracking-widest font-bold shadow-sm transition-all flex items-center justify-center gap-2">
+                    <span>Read My Love Letter</span>
+                    <span>💌</span>
+                </a>
+            </div>
+
+            <!-- Milestone Counter Cards -->
+            <div id="milestones" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto">
+                <!-- Card 1 -->
+                <div class="bg-white/90 backdrop-blur-sm border-2 border-petal-200 rounded-3xl p-5 shadow-md hover:-translate-y-1 transition-transform relative overflow-hidden">
+                    <span class="absolute -top-1 -right-1 text-2xl opacity-25">💗</span>
+                    <div class="text-2xl mb-1">💞</div>
+                    <div id="stat-years" class="font-serif text-3xl sm:text-4xl font-bold text-roseberry-600 mb-1">04</div>
+                    <div class="font-sans text-xs uppercase tracking-widest text-roseberry-800 font-bold">Years Together</div>
+                    <div class="text-xs text-roseberry-500 italic mt-0.5 font-body">Best 4 years ever</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white/90 backdrop-blur-sm border-2 border-petal-200 rounded-3xl p-5 shadow-md hover:-translate-y-1 transition-transform relative overflow-hidden">
+                    <span class="absolute -top-1 -right-1 text-2xl opacity-25">💗</span>
+                    <div class="text-2xl mb-1">🌸</div>
+                    <div id="stat-months" class="font-serif text-3xl sm:text-4xl font-bold text-roseberry-600 mb-1">48</div>
+                    <div class="font-sans text-xs uppercase tracking-widest text-roseberry-800 font-bold">Months of Magic</div>
+                    <div class="text-xs text-roseberry-500 italic mt-0.5 font-body">Hand in hand</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white/90 backdrop-blur-sm border-2 border-petal-200 rounded-3xl p-5 shadow-md hover:-translate-y-1 transition-transform relative overflow-hidden">
+                    <span class="absolute -top-1 -right-1 text-2xl opacity-25">💗</span>
+                    <div class="text-2xl mb-1">☀️</div>
+                    <div id="stat-days" class="font-serif text-3xl sm:text-4xl font-bold text-roseberry-600 mb-1">1,461</div>
+                    <div class="font-sans text-xs uppercase tracking-widest text-roseberry-800 font-bold">Days of Love</div>
+                    <div class="text-xs text-roseberry-500 italic mt-0.5 font-body">Including 1 leap day</div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white/90 backdrop-blur-sm border-2 border-petal-200 rounded-3xl p-5 shadow-md hover:-translate-y-1 transition-transform relative overflow-hidden">
+                    <span class="absolute -top-1 -right-1 text-2xl opacity-25">💗</span>
+                    <div class="text-2xl mb-1">💖</div>
+                    <div class="font-serif text-3xl sm:text-4xl font-bold text-roseberry-600 mb-1">∞</div>
+                    <div class="font-sans text-xs uppercase tracking-widest text-roseberry-800 font-bold">Cute Memories</div>
+                    <div class="text-xs text-roseberry-500 italic mt-0.5 font-body">And counting!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cute Heart Divider -->
+    <div class="relative z-10 flex items-center justify-center py-4 px-4">
+        <div class="h-0.5 w-24 sm:w-48 bg-gradient-to-r from-transparent to-petal-400"></div>
+        <span class="mx-4 text-2xl animate-bounce">💖</span>
+        <div class="h-0.5 w-24 sm:w-48 bg-gradient-to-l from-transparent to-petal-400"></div>
+    </div>
+
+    <!-- =====================================================================
+         3. 4-PHOTO GALLERY SECTION (YEAR 1 TO YEAR 4)
+         HOW TO REPLACE DUMMY IMAGES FOR GITHUB PAGES:
+         1. Create a folder named `images` next to your `index.html` file.
+         2. Drop your 4 favorite photos inside (e.g., `photo1.jpg` to `photo4.jpg`).
+         3. Below, replace `src="https://picsum.photos/..."` with `src="images/photo1.jpg"`.
+         4. If you want to add more photos later, simply copy and paste any `<article>` block!
+    ====================================================================== -->
+    <section id="gallery" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="font-sans text-xs uppercase tracking-[0.25em] text-roseberry-500 font-bold block mb-2">
+                4 Years • 4 Favorite Snapshots
+            </span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-bold text-roseberry-900 mb-4">
+                Our Love in 4 Chapters 💕
+            </h2>
+            <p class="font-body text-roseberry-800/80 italic text-base sm:text-lg mb-7">
+                Switch between cute Heart-Shaped Frames and Scrapbook Polaroids below, or tap any photo to view it full-screen!
+            </p>
+
+            <!-- Cute Toggle Button: Heart-Shaped Frames vs Cute Polaroid Frames -->
+            <div class="inline-flex items-center bg-white p-1.5 rounded-full border-2 border-petal-300 shadow-md">
+                <button id="btn-heart-frames" onclick="setFrameMode('heart')" class="px-5 py-2 rounded-full text-xs sm:text-sm font-sans font-bold transition-all bg-roseberry-600 text-white shadow-sm cursor-pointer">
+                    ❤️ Heart-Shaped Frames
+                </button>
+                <button id="btn-polaroid-frames" onclick="setFrameMode('polaroid')" class="px-5 py-2 rounded-full text-xs sm:text-sm font-sans font-bold transition-all text-roseberry-700 hover:text-roseberry-500 cursor-pointer">
+                    📸 Cute Polaroid Frames
+                </button>
+            </div>
+        </div>
+
+        <!-- 4-Photo Grid Container (2x2 on tablet/desktop, 1 col on mobile) -->
+        <div id="gallery-grid" class="heart-mode grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 max-w-4xl mx-auto">
+
+            <!-- 📸 PHOTO 1: Replace src below with "images/photo1.jpg" -->
+            <article class="photo-card group cursor-pointer rounded-3xl p-5 sm:p-6 relative flex flex-col items-center text-center" onclick="openLightbox(0)">
+                <!-- Cute Polaroid Pin (Shown in Polaroid Mode) -->
+                <div class="polaroid-pin absolute -top-3.5 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-petal-200 border-2 border-white shadow flex items-center justify-center text-sm z-20">
+                    📌
+                </div>
+
+                <!-- Year Pill Badge -->
+                <span class="mb-3 px-4 py-1 rounded-full bg-petal-100 border border-petal-300 text-roseberry-700 font-sans text-xs uppercase tracking-widest font-bold shadow-sm">
+                    💗 Year One
+                </span>
+
+                <!-- Photo Wrapper (Clipped to Heart in Heart Mode) -->
+                <div class="relative w-full max-w-[300px] aspect-square flex items-center justify-center">
+                    <div class="photo-frame-wrapper w-full h-full overflow-hidden relative">
+                        <img 
+                            src="images/photo1.jpg" 
+                            alt="Where Our Story Began" 
+                            data-caption="Year One — That sweet nervous excitement, our first dates, and realizing you were my favorite person."
+                            data-year="Year One • Chapter I"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x800/FFE0EB/A31645?text=Photo+1+(images/photo1.jpg)';"
+                            class="gallery-img w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        >
+                    </div>
+                    <!-- Cute SVG Heart Border Overlay (Visible in Heart Mode) -->
+                    <svg class="heart-svg-outline absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M 50,93 C 50,93 4,65 4,33 C 4,14 19,3 35,3 C 44,3 50,10 50,16 C 50,10 56,3 65,3 C 81,3 96,14 96,33 C 96,65 50,93 50,93 Z" 
+                              fill="none" stroke="#FF6699" stroke-width="2.5" stroke-dasharray="4 2" />
+                    </svg>
+                </div>
+
+                <!-- Caption -->
+                <div class="mt-4 px-2">
+                    <h3 class="font-serif text-xl font-bold text-roseberry-900">Where Our Story Began</h3>
+                    <p class="font-body text-sm text-roseberry-700/85 italic mt-1">
+                        That sweet nervous excitement and the best decision of my life.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 📸 PHOTO 2: Replace src below with "images/photo2.jpg" -->
+            <article class="photo-card group cursor-pointer rounded-3xl p-5 sm:p-6 relative flex flex-col items-center text-center" onclick="openLightbox(1)">
+                <div class="polaroid-pin absolute -top-3.5 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-petal-200 border-2 border-white shadow flex items-center justify-center text-sm z-20">
+                    📌
+                </div>
+
+                <span class="mb-3 px-4 py-1 rounded-full bg-petal-100 border border-petal-300 text-roseberry-700 font-sans text-xs uppercase tracking-widest font-bold shadow-sm">
+                    💞 Year Two
+                </span>
+
+                <div class="relative w-full max-w-[300px] aspect-square flex items-center justify-center">
+                    <div class="photo-frame-wrapper w-full h-full overflow-hidden relative">
+                        <img 
+                            src="images/photo2.jpg" 
+                            alt="Adventures & Inside Jokes" 
+                            data-caption="Year Two — Spontaneous road trips, late-night talks, and laughing until our stomachs hurt."
+                            data-year="Year Two • Chapter II"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x800/FFE0EB/A31645?text=Photo+2+(images/photo2.jpg)';"
+                            class="gallery-img w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        >
+                    </div>
+                    <svg class="heart-svg-outline absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M 50,93 C 50,93 4,65 4,33 C 4,14 19,3 35,3 C 44,3 50,10 50,16 C 50,10 56,3 65,3 C 81,3 96,14 96,33 C 96,65 50,93 50,93 Z" 
+                              fill="none" stroke="#FF6699" stroke-width="2.5" stroke-dasharray="4 2" />
+                    </svg>
+                </div>
+
+                <div class="mt-4 px-2">
+                    <h3 class="font-serif text-xl font-bold text-roseberry-900">Adventures &amp; Inside Jokes</h3>
+                    <p class="font-body text-sm text-roseberry-700/85 italic mt-1">
+                        Getting lost in new places with my favorite travel partner.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 📸 PHOTO 3: Replace src below with "images/photo3.jpg" -->
+            <article class="photo-card group cursor-pointer rounded-3xl p-5 sm:p-6 relative flex flex-col items-center text-center" onclick="openLightbox(2)">
+                <div class="polaroid-pin absolute -top-3.5 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-petal-200 border-2 border-white shadow flex items-center justify-center text-sm z-20">
+                    📌
+                </div>
+
+                <span class="mb-3 px-4 py-1 rounded-full bg-petal-100 border border-petal-300 text-roseberry-700 font-sans text-xs uppercase tracking-widest font-bold shadow-sm">
+                    🌸 Year Three
+                </span>
+
+                <div class="relative w-full max-w-[300px] aspect-square flex items-center justify-center">
+                    <div class="photo-frame-wrapper w-full h-full overflow-hidden relative">
+                        <img 
+                            src="images/photo3.jpg" 
+                            alt="Cozy Days & Big Dreams" 
+                            data-caption="Year Three — Turning even the quietest, simplest days into magic just by being together."
+                            data-year="Year Three • Chapter III"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x800/FFE0EB/A31645?text=Photo+3+(images/photo3.jpg)';"
+                            class="gallery-img w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        >
+                    </div>
+                    <svg class="heart-svg-outline absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M 50,93 C 50,93 4,65 4,33 C 4,14 19,3 35,3 C 44,3 50,10 50,16 C 50,10 56,3 65,3 C 81,3 96,14 96,33 C 96,65 50,93 50,93 Z" 
+                              fill="none" stroke="#FF6699" stroke-width="2.5" stroke-dasharray="4 2" />
+                    </svg>
+                </div>
+
+                <div class="mt-4 px-2">
+                    <h3 class="font-serif text-xl font-bold text-roseberry-900">Cozy Days &amp; Big Dreams</h3>
+                    <p class="font-body text-sm text-roseberry-700/85 italic mt-1">
+                        Even the simplest days turn into magic when I'm with you.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 📸 PHOTO 4: Replace src below with "images/photo4.jpg" -->
+            <article class="photo-card group cursor-pointer rounded-3xl p-5 sm:p-6 relative flex flex-col items-center text-center" onclick="openLightbox(3)">
+                <div class="polaroid-pin absolute -top-3.5 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-petal-200 border-2 border-white shadow flex items-center justify-center text-sm z-20">
+                    📌
+                </div>
+
+                <span class="mb-3 px-4 py-1 rounded-full bg-petal-100 border border-petal-300 text-roseberry-700 font-sans text-xs uppercase tracking-widest font-bold shadow-sm">
+                    💖 Year Four
+                </span>
+
+                <div class="relative w-full max-w-[300px] aspect-square flex items-center justify-center">
+                    <div class="photo-frame-wrapper w-full h-full overflow-hidden relative">
+                        <img 
+                            src="images/photo4.jpg" 
+                            alt="Four Years & Forever To Go" 
+                            data-caption="Year Four — Four years down, and my heart still skips a beat every single time I look at you."
+                            data-year="Year Four • Chapter IV"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x800/FFE0EB/A31645?text=Photo+4+(images/photo4.jpg)';"
+                            class="gallery-img w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        >
+                    </div>
+                    <svg class="heart-svg-outline absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M 50,93 C 50,93 4,65 4,33 C 4,14 19,3 35,3 C 44,3 50,10 50,16 C 50,10 56,3 65,3 C 81,3 96,14 96,33 C 96,65 50,93 50,93 Z" 
+                              fill="none" stroke="#FF6699" stroke-width="2.5" stroke-dasharray="4 2" />
+                    </svg>
+                </div>
+
+                <div class="mt-4 px-2">
+                    <h3 class="font-serif text-xl font-bold text-roseberry-900">Four Years &amp; Forever To Go</h3>
+                    <p class="font-body text-sm text-roseberry-700/85 italic mt-1">
+                        Four years down, and my heart still skips a beat for you.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Cute Heart Divider -->
+    <div class="relative z-10 flex items-center justify-center py-4 px-4">
+        <div class="h-0.5 w-24 sm:w-48 bg-gradient-to-r from-transparent to-petal-400"></div>
+        <span class="mx-4 text-2xl">💌</span>
+        <div class="h-0.5 w-24 sm:w-48 bg-gradient-to-l from-transparent to-petal-400"></div>
+    </div>
+
+    <!-- =====================================================================
+         4. LOVE LETTER SECTION BELOW
+         Includes vintage cute stationery, a 'Shower With Hearts 💖' button,
+         and a '✏️ Write / Edit Letter' drawer to customize and copy the letter!
+    ====================================================================== -->
+    <section id="letter" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto">
+        
+        <div class="text-center mb-10">
+            <span class="font-sans text-xs uppercase tracking-[0.25em] text-roseberry-500 font-bold block mb-2">
+                Written From the Bottom of My Heart
+            </span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-bold text-roseberry-900">
+                A Love Letter For You 💖
+            </h2>
+        </div>
+
+        <!-- Cute Stationery Letter Card -->
+        <div class="love-stationery rounded-3xl p-6 sm:p-12 md:p-14 relative">
+            
+            <!-- Inner Dashed Heart Frame -->
+            <div class="border-2 border-dashed border-petal-300 rounded-2xl p-6 sm:p-10 md:p-12 relative bg-white/60">
+                
+                <!-- Cute Corner Hearts -->
+                <span class="absolute top-3 left-3.5 text-lg select-none">💗</span>
+                <span class="absolute top-3 right-3.5 text-lg select-none">💗</span>
+                <span class="absolute bottom-3 left-3.5 text-lg select-none">💗</span>
+                <span class="absolute bottom-3 right-3.5 text-lg select-none">💗</span>
+
+                <!-- Letter Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-petal-200 pb-6 mb-8 gap-2">
+                    <div>
+                        <span class="font-sans text-xs uppercase tracking-[0.2em] text-roseberry-500 font-bold block">
+                            Happy 4th Anniversary
+                        </span>
+                        <!-- 💌 EDIT SALUTATION BELOW -->
+                        <h3 id="letter-salutation" class="font-script text-4xl sm:text-5xl text-roseberry-700 mt-1">
+                            To My Baby Girl ,
+                        </h3>
+                    </div>
+                    <div class="sm:text-right font-body italic text-sm text-roseberry-700/80">
+                        <p id="letter-date">1,461 Days of Loving You 💕</p>
+                        <p class="text-xs text-roseberry-500 not-italic font-sans uppercase tracking-widest font-bold mt-1">
+                            Year 4 • Long way To Go
+                        </p>
+                    </div>
+                </div>
+
+                <!-- =========================================================
+                     💌 EDIT YOUR LOVE LETTER PARAGRAPHS BELOW!
+                     You can edit the <p> tags directly in index.html or use
+                     the "✏️ Write / Edit Letter" button right below the letter!
+                ========================================================== -->
+                <div id="letter-body" class="space-y-5 font-body text-base sm:text-lg text-roseberry-900/90 leading-relaxed">
+                    <p>
+                        Today Marks four year for us , I know neither of us is a place to say that everything is perfect and I promise that it will never be , but that whats a relationship is all about . Thank you for laughing ,living , loving & fighting with me everyday . 
+                    </p>
+                    <p>
+                        Throughout the last year I have made mistakes , lots of mistakes and i cannot say i will not make any more mistakes but yes I  .I just wanna tell you that you are the first thought when i wake up and last thought before i go to sleep , every morning i search for my phone half asleep , just to say good morning to you at 12 pm
+                    </p>
+                    <p>
+                        These four photos above are just a tiny peek into the thousands of memories we have built over the last few years,One thing is common in all of them , whenever we are together , we are happy and for this happiness i willing to fight everyone including you .
+                    </p>
+                    <p>
+                        Thank you for being my partner, my best friend, and my whole heart. I love you more today than yesterday, and not nearly as much as I will tomorrow. I am still here and I am still willing to try , if you let me  ?
+                    </p>
+                </div>
+                <!-- =========================================================
+                     END OF LOVE LETTER PARAGRAPHS
+                ========================================================== -->
+
+                <!-- Letter Signature & Interactive Action Buttons -->
+                <div class="mt-10 pt-6 border-t-2 border-petal-200 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+                    <div>
+                        <p class="font-body italic text-roseberry-700 mb-1">
+                            Forever and always yours,
+                        </p>
+                        <!-- 💌 EDIT YOUR NAME / SIGNATURE BELOW -->
+                        <p id="letter-signature" class="font-script text-4xl sm:text-5xl text-roseberry-600">
+                            With All My Heart ❤️
+                        </p>
+                    </div>
+
+                    <!-- Action Buttons: Shower With Hearts & Write/Edit Letter -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="triggerHeartShower()" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-roseberry-500 to-roseberry-600 hover:from-roseberry-600 hover:to-roseberry-700 text-white font-sans text-xs uppercase tracking-wider font-bold shadow-md shadow-roseberry-500/20 transition-all hover:scale-105 cursor-pointer">
+                            Shower With Hearts 💖
+                        </button>
+                        <!-- <button onclick="toggleLetterEditor()" class="px-4 py-2.5 rounded-full bg-petal-100 hover:bg-petal-200 text-roseberry-800 border border-petal-300 font-sans text-xs uppercase tracking-wider font-bold transition-colors cursor-pointer">
+                            ✏️ Write / Edit Letter
+                        </button> -->
+                    </div>
+                </div>
+
+                <!-- Live Letter Editor Drawer (Hidden until clicking "✏️ Write / Edit Letter") -->
+                <div id="letter-editor-drawer" class="hidden mt-8 pt-6 border-t-2 border-dashed border-petal-300 bg-petal-50/90 p-5 rounded-2xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-serif font-bold text-roseberry-900 text-base">
+                            ✨ Customize Your Love Letter Live
+                        </h4>
+                        <button onclick="toggleLetterEditor()" class="text-xs font-sans font-bold uppercase tracking-wider text-roseberry-600 hover:text-roseberry-900">
+                            Close ✕
+                        </button>
+                    </div>
+                    <p class="text-xs font-sans text-roseberry-700/80 mb-4">
+                        Write or tweak your letter below and watch it update live above! When you're happy with it, click <strong>Copy Letter HTML</strong> to paste into your <code class="bg-petal-200/70 px-1.5 py-0.5 rounded">index.html</code> file.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-roseberry-800 mb-1">Salutation</label>
+                            <input id="input-salutation" type="text" value="To My Favorite Person," oninput="updateLiveLetter()" class="w-full px-3.5 py-2 rounded-xl bg-white border border-petal-300 text-sm font-body focus:outline-none focus:ring-2 focus:ring-roseberry-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-roseberry-800 mb-1">Signature</label>
+                            <input id="input-signature" type="text" value="With All My Heart ❤️" oninput="updateLiveLetter()" class="w-full px-3.5 py-2 rounded-xl bg-white border border-petal-300 text-sm font-body focus:outline-none focus:ring-2 focus:ring-roseberry-500">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-xs font-sans font-bold uppercase tracking-wider text-roseberry-800 mb-1">Your Letter Paragraphs (Separate paragraphs with a blank line)</label>
+                        <textarea id="input-body" rows="6" oninput="updateLiveLetter()" class="w-full p-3.5 rounded-xl bg-white border border-petal-300 text-sm font-body focus:outline-none focus:ring-2 focus:ring-roseberry-500">Looking back at the past four years, it still amazes me how quickly time flies when I am with you. Four years ago, our story began, and since that very first day, you have filled my world with the sweetest laughter, warmth, and a happiness I never knew was possible.
+
+Through every spontaneous adventure, every cozy morning coffee, every inside joke, and every quiet moment together, you have been my safest place and my biggest supporter. I love your kindness, your smile, and the way you make even an ordinary day feel special.
+
+These four photos above are just a tiny peek into the thousands of memories we have built over the last 48 months—and when I have all 10 to 15 of our favorite pictures uploaded here, each one will remind me of another reason why I fall in love with you all over again.
+
+Thank you for being my partner, my best friend, and my whole heart. I love you more today than yesterday, and not nearly as much as I will tomorrow. Happy 4 Year Anniversary, my love!</textarea>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <button onclick="copyLetterHTML()" class="px-5 py-2 rounded-full bg-roseberry-600 hover:bg-roseberry-700 text-white font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-sm cursor-pointer">
+                            Copy Letter HTML 📋
+                        </button>
+                        <span id="copy-toast" class="text-xs font-sans text-roseberry-600 font-bold opacity-0 transition-opacity">
+                            💖 Copied to clipboard!
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         5. FOOTER
+    ====================================================================== -->
+    <footer class="relative z-10 bg-roseberry-900 text-petal-100 py-12 px-4 sm:px-6 mt-12 border-t-4 border-petal-300">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="font-script text-4xl text-petal-300 mb-2">
+                Four Years Down, Long way To Go 💕
+            </p>
+            <p class="font-sans text-xs sm:text-sm uppercase tracking-widest text-petal-200/80 font-semibold mb-6">
+                4 Years • 48 Months • 1,461 Days • Endless Love & Ending Fight
+            </p>
+            <div class="flex items-center justify-center gap-3">
+                <a href="#hero" class="px-5 py-2 rounded-full bg-roseberry-800 hover:bg-roseberry-700 text-white border border-petal-400/40 font-sans text-xs uppercase tracking-widest font-bold transition-all">
+                    Back to Top ↑
+                </a>
+                <button onclick="triggerHeartShower()" class="px-5 py-2 rounded-full bg-roseberry-600 hover:bg-roseberry-500 text-white font-sans text-xs uppercase tracking-widest font-bold transition-all cursor-pointer">
+                    More Hearts 💖
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================================================
+         LIGHTBOX MODAL (For Viewing Any of the 4 Photos Full-Screen)
+    ====================================================================== -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-roseberry-900/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
+        
+        <!-- Close Button -->
+        <button onclick="closeLightbox()" aria-label="Close Lightbox" class="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-colors z-50 text-xl font-bold">
+            ✕
+        </button>
+
+        <!-- Previous Photo Button -->
+        <button onclick="changeLightboxSlide(-1)" aria-label="Previous Photo" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-colors z-50 text-xl font-bold">
+            ‹
+        </button>
+
+        <!-- Next Photo Button -->
+        <button onclick="changeLightboxSlide(1)" aria-label="Next Photo" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-colors z-50 text-xl font-bold">
+            ›
+        </button>
+
+        <!-- Lightbox Content Card -->
+        <div class="max-w-2xl w-full bg-white p-4 sm:p-6 rounded-3xl border-4 border-petal-300 shadow-2xl flex flex-col items-center text-center relative">
+            <div class="w-full max-h-[65vh] overflow-hidden rounded-2xl bg-petal-100 flex items-center justify-center">
+                <img id="lightbox-img" src="" alt="Memory" class="max-h-[65vh] w-auto object-contain">
+            </div>
+            <div class="mt-4 px-3 pb-1">
+                <span id="lightbox-year" class="font-sans text-xs uppercase tracking-[0.2em] text-roseberry-500 font-bold block mb-1"></span>
+                <h3 id="lightbox-title" class="font-serif text-xl sm:text-2xl font-bold text-roseberry-900"></h3>
+                <p id="lightbox-caption" class="font-body text-sm sm:text-base text-roseberry-800/85 italic mt-1 max-w-xl mx-auto"></p>
+                <p id="lightbox-counter" class="font-sans text-[11px] text-roseberry-500 uppercase tracking-widest font-bold mt-3"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         JAVASCRIPT: SPLASH HEART ANIMATION, CLICK BURSTS, GALLERY & LETTER
+    ====================================================================== -->
+    <script>
+        const HEART_EMOJIS = ['💖', '💕', '💗', '💓', '💞', '🌸', '✨', '❤️'];
+
+        /* -------------------------------------------------------------------
+           1. CUTE HEARTY SPLASH OVERLAY OPEN & REPLAY
+        ------------------------------------------------------------------- */
+        function openHeartSplash(e) {
+            if (e) e.stopPropagation();
+            const splash = document.getElementById('splash-overlay');
+            
+            // Trigger celebratory heart burst from center of screen
+            triggerHeartShower(48);
+
+            splash.style.opacity = '0';
+            splash.style.transform = 'scale(1.08)';
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 680);
+        }
+
+        function replayHeartSplash(e) {
+            if (e) e.stopPropagation();
+            const splash = document.getElementById('splash-overlay');
+            splash.style.display = 'flex';
+            requestAnimationFrame(() => {
+                splash.style.opacity = '1';
+                splash.style.transform = 'scale(1)';
+            });
+        }
+
+        /* -------------------------------------------------------------------
+           2. CLICK / TAP MINI-HEART BURST & HEART SHOWER CELEBRATION
+        ------------------------------------------------------------------- */
+        function createBurstHeart(x, y, maxSpread = 95) {
+            const el = document.createElement('span');
+            el.className = 'burst-heart-particle';
+            el.textContent = HEART_EMOJIS[Math.floor(Math.random() * HEART_EMOJIS.length)];
+            
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 25 + Math.random() * maxSpread;
+            const tx = Math.cos(angle) * distance;
+            const ty = Math.sin(angle) * distance - 25;
+            const rot = (Math.random() - 0.5) * 50;
+
+            el.style.left = `${x}px`;
+            el.style.top = `${y}px`;
+            el.style.fontSize = `${14 + Math.random() * 14}px`;
+            el.style.setProperty('--tx', `${tx}px`);
+            el.style.setProperty('--ty', `${ty}px`);
+            el.style.setProperty('--rot', `${rot}deg`);
+
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 1400);
+        }
+
+        // Pop mini-hearts wherever the user clicks/taps on the page
+        document.addEventListener('click', function(e) {
+            for (let i = 0; i < 6; i++) {
+                createBurstHeart(e.clientX, e.clientY, 75);
+            }
+        });
+
+        // Big Heart Shower Celebration Button
+        function triggerHeartShower(count = 42) {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const rx = Math.random() * w;
+                    const ry = h * 0.25 + Math.random() * (h * 0.65);
+                    createBurstHeart(rx, ry, 140);
+                }, i * 22);
+            }
+        }
+
+        /* -------------------------------------------------------------------
+           3. GALLERY FRAME MODE TOGGLE (Heart-Shaped vs Cute Polaroid)
+        ------------------------------------------------------------------- */
+        function setFrameMode(mode) {
+            const grid = document.getElementById('gallery-grid');
+            const btnHeart = document.getElementById('btn-heart-frames');
+            const btnPolaroid = document.getElementById('btn-polaroid-frames');
+
+            if (mode === 'heart') {
+                grid.classList.remove('polaroid-mode');
+                grid.classList.add('heart-mode');
+                btnHeart.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-sans font-bold transition-all bg-roseberry-600 text-white shadow-sm cursor-pointer';
+                btnPolaroid.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-sans font-bold transition-all text-roseberry-700 hover:text-roseberry-500 cursor-pointer';
+            } else {
+                grid.classList.remove('heart-mode');
+                grid.classList.add('polaroid-mode');
+                btnPolaroid.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-sans font-bold transition-all bg-roseberry-600 text-white shadow-sm cursor-pointer';
+                btnHeart.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-sans font-bold transition-all text-roseberry-700 hover:text-roseberry-500 cursor-pointer';
+            }
+        }
+
+        /* -------------------------------------------------------------------
+           4. LIGHTBOX MODAL LOGIC
+        ------------------------------------------------------------------- */
+        let currentSlideIndex = 0;
+
+        function getGalleryImages() {
+            return Array.from(document.querySelectorAll('.gallery-img'));
+        }
+
+        function openLightbox(index) {
+            const images = getGalleryImages();
+            if (!images.length) return;
+
+            currentSlideIndex = index;
+            updateLightboxContent();
+
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+            });
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        function changeLightboxSlide(step) {
+            const images = getGalleryImages();
+            if (!images.length) return;
+            currentSlideIndex = (currentSlideIndex + step + images.length) % images.length;
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            const images = getGalleryImages();
+            const activeImg = images[currentSlideIndex];
+            if (!activeImg) return;
+
+            document.getElementById('lightbox-img').src = activeImg.src;
+            document.getElementById('lightbox-title').textContent = activeImg.alt || 'Our Memory';
+            document.getElementById('lightbox-caption').textContent = activeImg.getAttribute('data-caption') || '';
+            document.getElementById('lightbox-year').textContent = activeImg.getAttribute('data-year') || '';
+            document.getElementById('lightbox-counter').textContent = `Snapshot ${currentSlideIndex + 1} of ${images.length} 💖`;
+        }
+
+        document.getElementById('lightbox-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('lightbox-modal');
+            if (modal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') changeLightboxSlide(1);
+            if (e.key === 'ArrowLeft') changeLightboxSlide(-1);
+        });
+
+        /* -------------------------------------------------------------------
+           5. LIVE LOVE LETTER EDITOR & CLIPBOARD COPY
+        ------------------------------------------------------------------- */
+        function toggleLetterEditor() {
+            const drawer = document.getElementById('letter-editor-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function updateLiveLetter() {
+            const salutation = document.getElementById('input-salutation').value;
+            const signature = document.getElementById('input-signature').value;
+            const bodyRaw = document.getElementById('input-body').value;
+
+            document.getElementById('letter-salutation').textContent = salutation;
+            document.getElementById('letter-signature').textContent = signature;
+
+            const paragraphs = bodyRaw
+                .split(/\n\s*\n/)
+                .map(p => p.trim())
+                .filter(Boolean);
+
+            const bodyContainer = document.getElementById('letter-body');
+            bodyContainer.innerHTML = '';
+            paragraphs.forEach(text => {
+                const p = document.createElement('p');
+                p.textContent = text;
+                bodyContainer.appendChild(p);
+            });
+        }
+
+        function copyLetterHTML() {
+            const bodyContainer = document.getElementById('letter-body');
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = bodyContainer.innerHTML;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextarea);
+
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2500);
+        }
+
+        /* -------------------------------------------------------------------
+           6. BACKGROUND FLOATING PASTEL HEARTS CANVAS ANIMATION
+        ------------------------------------------------------------------- */
+        window.onload = function() {
+            const canvas = document.getElementById('hearts-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            const hearts = [];
+            const HEART_COUNT = 26;
+
+            function resizeCanvas() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            const colors = [
+                'rgba(255, 148, 184, 0.42)',
+                'rgba(255, 102, 153, 0.32)',
+                'rgba(255, 194, 214, 0.55)',
+                'rgba(225, 61, 115, 0.25)'
+            ];
+
+            for (let i = 0; i < HEART_COUNT; i++) {
+                hearts.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 12 + 8,
+                    speedY: Math.random() * 0.65 + 0.3,
+                    swayAmp: Math.random() * 0.6 + 0.2,
+                    swaySpeed: Math.random() * 0.02 + 0.01,
+                    angle: Math.random() * Math.PI * 2,
+                    color: colors[i % colors.length]
+                });
+            }
+
+            function drawHeartShape(ctx, x, y, size, color) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                const topCurveHeight = size * 0.3;
+                ctx.moveTo(0, topCurveHeight);
+                // Left side of heart
+                ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+                ctx.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, (size + topCurveHeight) / 1.4, 0, size);
+                // Right side of heart
+                ctx.bezierCurveTo(0, (size + topCurveHeight) / 1.4, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
+                ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+
+            function animateFloatingHearts() {
+                ctx.clearRect(0, 0, width, height);
+                hearts.forEach(h => {
+                    h.y -= h.speedY; // Float gently upward
+                    h.angle += h.swaySpeed;
+                    h.x += Math.sin(h.angle) * h.swayAmp;
+
+                    if (h.y < -30) {
+                        h.y = height + 30;
+                        h.x = Math.random() * width;
+                    }
+
+                    drawHeartShape(ctx, h.x, h.y, h.size, h.color);
+                });
+                requestAnimationFrame(animateFloatingHearts);
+            }
+
+            animateFloatingHearts();
+        };
+    </script>
+</body>
+</html>
+
